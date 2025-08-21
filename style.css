@@ -1,6 +1,7 @@
 body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
 #clock { font-size:1.15em; font-weight:bold; color:#1976d2; margin-bottom:8px; }
 .student-count { font-size: 1.1em; margin-bottom: 10px; color: #1976d2; font-weight: bold; }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(10, 50px);
@@ -10,6 +11,7 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
   margin-top: 20px;
   perspective: 700px;
 }
+
 .cell {
   width: 50px;
   height: 50px;
@@ -25,6 +27,7 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
   transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10), 0 1.5px 4px rgba(76, 175, 80, 0.08);
 }
+
 .cell.active { 
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
   color: #fff;
@@ -33,6 +36,7 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
   transform: scale(1.04);
   box-shadow: 0 4px 16px rgba(67, 233, 123, 0.18);
 }
+
 .cell.assigned {
   background: linear-gradient(135deg, #1976d2 60%, #64b5f6 100%) !important;
   color: #fff !important;
@@ -41,11 +45,13 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
   box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
   transition: background 0.7s, color 0.7s, border 0.7s;
 }
+
 .cell.fixed {
   background: repeating-linear-gradient(135deg, #fffbe7 0 8px, #ffe082 8px 16px);
   color: #bfa600 !important;
   border: 2.5px solid #ffb300 !important;
 }
+
 button {
   margin-top: 15px;
   padding: 12px 22px;
@@ -63,6 +69,7 @@ button:hover {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
 }
+
 .mode { margin:14px 0 0 0; font-weight:bold; color:#1976d2; }
 .mode input { accent-color:#1976d2; }
 
