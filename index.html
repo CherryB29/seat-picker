@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>자리 뽑기 프로그램</title>
+  <!-- CSS 연결 -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>자리 뽑기 프로그램 🎲</h1>
+
+  <!-- 현재 시각 -->
   <div id="clock"></div>
+
+  <!-- 학생 수 표시 -->
   <div class="student-count" id="studentCount">학생 수: 0</div>
   <p>칸을 클릭해 활성화/비활성화 시킨 뒤 "자리 뽑기" 버튼을 누르세요.</p>
 
+  <!-- 버튼 -->
   <button onclick="assignSeats()">자리 뽑기</button>
   <button onclick="resetAllCells()">전체 초기화</button>
 
+  <!-- 긴장감 모드 -->
   <div class="mode">
     <label>
       <input type="checkbox" id="dramaticMode">
@@ -21,8 +28,10 @@
     </label>
   </div>
 
+  <!-- 자리 격자 -->
   <div class="grid" id="grid"></div>
 
+  <!-- JS 연결 -->
   <script src="script.js"></script>
 </body>
 </html>
