@@ -40,7 +40,7 @@ function toggleCell(cell){
 }
 
 // 드래그/터치 관련
-let isDragging=false, dragMode=null, dragStartCell=null, lastTouchedCell=null, touchStartCell=null;
+let isDragging=false, dragMode=null, dragStartCell=null;
 grid.addEventListener('mousedown',e=>{
   if(e.target.classList.contains('cell')){
     isDragging=true;
@@ -52,29 +52,40 @@ grid.addEventListener('mousedown',e=>{
 grid.addEventListener('mouseover',e=>{ if(isDragging && e.target.classList.contains('cell')) toggleCellByDrag(e.target); });
 window.addEventListener('mouseup',e=>{ if(isDragging && dragStartCell && e.target===dragStartCell) toggleCell(dragStartCell); isDragging=false; dragMode=null; dragStartCell=null; });
 
-grid.addEventListener('touchstart',e=>{
-  const touch=e.touches[0];
-  const target=document.elementFromPoint(touch.clientX,touch.clientY);
-  if(target && target.classList.contains('cell')){
-    isDragging=true;
-    dragMode=target.dataset.active==="true"?"off":"on";
-    lastTouchedCell=target;
-    touchStartCell=target;
+// 모바일 터치
+let lastTouchedCell = null;
+let touchStartCell = null;
+grid.addEventListener('touchstart', e => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (target && target.classList.contains('cell')) {
+    isDragging = true;
+    dragMode = target.dataset.active === "true" ? "off" : "on";
+    lastTouchedCell = target;
+    touchStartCell = target;
     toggleCellByDrag(target);
   }
-});
-grid.addEventListener('touchmove',e=>{
-  if(!isDragging) return;
-  const touch=e.touches[0];
-  const target=document.elementFromPoint(touch.clientX,touch.clientY);
-  if(target && target.classList.contains('cell') && target!==lastTouchedCell){
+}, { passive: false });
+
+grid.addEventListener('touchmove', e => {
+  e.preventDefault();
+  if (!isDragging) return;
+  const touch = e.touches[0];
+  const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (target && target.classList.contains('cell') && target !== lastTouchedCell) {
     toggleCellByDrag(target);
-    lastTouchedCell=target;
+    lastTouchedCell = target;
   }
-});
-window.addEventListener('touchend',e=>{
-  if(isDragging && touchStartCell && lastTouchedCell===touchStartCell) toggleCell(touchStartCell);
-  isDragging=false; dragMode=null; lastTouchedCell=null; touchStartCell=null;
+}, { passive: false });
+window.addEventListener('touchend', e => {
+  if (isDragging && touchStartCell && lastTouchedCell === touchStartCell) {
+    toggleCell(touchStartCell);
+  }
+  isDragging = false;
+  dragMode = null;
+  lastTouchedCell = null;
+  touchStartCell = null;
 });
 
 function toggleCellByDrag(cell){
